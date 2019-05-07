@@ -1,0 +1,6 @@
+#!/bin/sh
+res=$(printf "Yes\nNo" | dmenu -p "Initiate shutdown?")
+if [ $res = 'Yes' ];
+then
+	shutdown now
+fi

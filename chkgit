@@ -1,0 +1,6 @@
+#!/bin/sh
+if [[ -d $PWD/.git ]]; then
+        PS1="\[$(tput setaf 2)\][\[$(tput sgr0)\]\w\[$(tput setaf 2)\]]\[$(tput setaf 6)\]($(git branch | grep "*" | cut -c 3-))\[$(tput sgr0)\]$ "
+else
+	PS1="\[$(tput setaf 2)\][\[$(tput sgr0)\]\w\[$(tput setaf 2)\]]\[$(tput sgr0)\]$ "
+fi
