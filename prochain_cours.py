@@ -6,14 +6,13 @@ import time, datetime
 now = datetime.datetime.now()
 
 group = "INF401_A4"
-date = "09/04/2019"
-#date = time.strftime("%d/%m/%Y")
-heure = "09:26"
-#heure = time.strftime("%H:%M")
+#date = "09/04/2019"
+date = time.strftime("%d/%m/%Y")
+#heure = "09:26"
+heure = time.strftime("%H:%M")
 d, m, a = date.split("/")
 current_h, current_m = heure.split(":")
 time = datetime.datetime(int(a), int(m), int(d), int(current_h), int(current_m))
-#time = "time.strftime("%H:%M")"
 
 page = urlopen("http://hackjack.info/et/{}/{}/{}/{}".format(group, a, m, d))
 
