@@ -1,0 +1,37 @@
+#!/usr/bin/python
+from bs4 import BeautifulSoup
+import urllib.request
+import re
+import os
+
+user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+
+url = "http://www.horriblesubs.info/rss.php?res=1080"
+headers={'User-Agent':user_agent,} 
+
+request=urllib.request.Request(url,None,headers) #The assembled request
+response = urllib.request.urlopen(request)
+
+soup = BeautifulSoup(response, features="lxml")
+items = soup.findAll("item")
+
+new_episode = 0
+magnet_link = ""
+
+for i in items:
+  if "JoJo" in i.find("title").text:
+    new_episode = int(re.search(r'\d+', i.find("title").text).group())
+    magnet_link = re.search('<link/>(.*)<guid', str(i)).group(1)
+    break
+
+f = open("/home/lucas/.scripts/last_episode", "r")
+
+last_episode = int(f.read().strip())
+f.close()
+
+if new_episode != last_episode:
+  os.system('/usr/bin/notify-send "Episode {} of JoJo\'s just came out! Downloading..."'.format(new_episode))
+  with open("/home/lucas/.scripts/last_episode", "w") as f:
+    f.write(str(new_episode))
+  os.system('/usr/bin/transmission-remote -a "{}"'.format(magnet_link))
+  
