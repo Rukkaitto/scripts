@@ -5,7 +5,7 @@ import time, datetime
 
 now = datetime.datetime.now()
 
-group = "INF401_A4"
+group = "INF501_A3"
 #date = "09/04/2019"
 date = time.strftime("%d/%m/%Y")
 #heure = "09:26"
