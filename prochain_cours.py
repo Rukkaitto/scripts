@@ -49,4 +49,7 @@ for h in cours_futurs:
     if h < mini:
         mini = h
 
-print("-> {} de {} - {}-{} - {}".format(cours[mini][4] ,cours[mini][0], cours[mini][2], cours[mini][3], cours[mini][1]))
+try:
+    print("-> {} de {} - {}-{} - {}".format(cours[mini][4] ,cours[mini][0], cours[mini][2], cours[mini][3], cours[mini][1]))
+except KeyError:
+    print("Pas de cours aujourd'hui !")
