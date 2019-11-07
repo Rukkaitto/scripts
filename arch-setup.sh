@@ -1,16 +1,15 @@
 #!/bin/bash
 
 echo "Welcome to the Arch Linux environment setup!"
+echo ""
 echo "What will be the name of your session?"
 
 read username
+useradd -m -g wheel "$username"
 
 echo "What will be your password?"
 
-read password
-
-bash -c "useradd -m -g wheel $username"
-chpasswd $username:$password
+passwd "$username"
 
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Defaults !tty_tickets" >> /etc/sudoers
@@ -21,6 +20,8 @@ systemctl enable ligthdm.service
 
 man-db
 
+su "$username"
+cd
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
