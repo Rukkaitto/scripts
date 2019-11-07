@@ -11,22 +11,16 @@ echo "What will be your password?"
 
 passwd "$username"
 
+cp finish-setup.sh /home/$username
+
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 echo "Defaults !tty_tickets" >> /etc/sudoers
 
-pacman -S xorg-server xorg-xinit i3-gaps i3blocks rxvt-unicode dmenu network-manager-applet noto-fonts lightdm lightdm-gtk-greeter pulseaudio alsa-utils zsh neovim openssh xorg-xset compton feh man-db man-pages
+pacman -S --noconfirm xorg-server xorg-xinit i3-gaps i3blocks rxvt-unicode dmenu network-manager-applet noto-fonts lightdm lightdm-gtk-greeter pulseaudio alsa-utils zsh neovim openssh xorg-xset compton feh man-db man-pages
 
 systemctl enable lightdm.service
 
-mandb
-
-git clone https://aur.archlinux.org/yay.git /home/$username/yay
-cd /home/$username/yay
-sudo -u $username -H sh -c "makepkg -si"
-cd ..
-rm -rf /home/$username/yay
-
-sudo -u $username -H sh -c "yay -S gohufont gohufont-powerline google-chrome"
+# mandb
 
 echo "exec i3" > /home/$username/.xinitrc
 
@@ -42,3 +36,8 @@ cp xprofile /home/$username/.xprofile
 cp zshrc /home/$username/.zshrc
 cp keyboard.conf /etc/X11/xorg.conf.d/20-keyboard.conf
 
+git clone https://aur.archlinux.org/yay.git /home/$username/yay
+cd /home/$username/yay
+
+echo "Setup is almost over, please source finish-setup.sh."
+su $username
