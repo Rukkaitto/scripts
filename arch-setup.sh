@@ -20,14 +20,13 @@ systemctl enable lightdm.service
 
 mandb
 
-su "$username"
 git clone https://aur.archlinux.org/yay.git /home/$username/yay
-cd yay
-makepkg -si
+cd /home/$username/yay
+sudo -u $username -H sh -c "makepkg -si"
 cd ..
-rm -rf yay
+rm -rf /home/$username/yay
 
-yay -S gohufont gohufont-powerline google-chrome
+sudo -u $username -H sh -c "yay -S gohufont gohufont-powerline google-chrome"
 
 echo "exec i3" > /home/$username/.xinitrc
 
