@@ -24,8 +24,10 @@ systemctl enable lightdm.service
 
 echo "exec i3" > /home/$username/.xinitrc
 
+cd ..
 git clone https://github.com/Rukkaitto/myrcs
-mkdir /home/$username/.config/i3blocks
+mkdir -p /home/$username/.config/i3blocks
+mkdir -p /home/$username/.config/i3
 cd myrcs
 
 cp bashrc /home/$username/.bashrc
@@ -36,8 +38,7 @@ cp xprofile /home/$username/.xprofile
 cp zshrc /home/$username/.zshrc
 cp keyboard.conf /etc/X11/xorg.conf.d/20-keyboard.conf
 
-git clone https://aur.archlinux.org/yay.git /home/$username/yay
-cd /home/$username/yay
+cd /home/$username
 
 echo "Setup is almost over, please source finish-setup.sh."
 su $username
