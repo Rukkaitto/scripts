@@ -22,22 +22,6 @@ systemctl enable lightdm.service
 
 # mandb
 
-echo "exec i3" > /home/$username/.xinitrc
-
-cd ..
-git clone https://github.com/Rukkaitto/myrcs
-mkdir -p /home/$username/.config/i3blocks
-mkdir -p /home/$username/.config/i3
-cd myrcs
-
-cp bashrc /home/$username/.bashrc
-cp i3config /home/$username/.config/i3/config
-cp i3blocksconfig /home/$username/.config/i3blocks/config
-cp Xresources /home/$username/.Xresources
-cp xprofile /home/$username/.xprofile
-cp zshrc /home/$username/.zshrc
-cp keyboard.conf /etc/X11/xorg.conf.d/20-keyboard.conf
-
 cd /home/$username
 
 echo "Setup is almost over, please source finish-setup.sh."
