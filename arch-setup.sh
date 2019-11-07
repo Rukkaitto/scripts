@@ -16,13 +16,12 @@ echo "Defaults !tty_tickets" >> /etc/sudoers
 
 pacman -S xorg-server xorg-xinit i3-gaps i3blocks rxvt-unicode dmenu network-manager-applet noto-fonts lightdm lightdm-gtk-greeter pulseaudio alsa-utils zsh neovim openssh xorg-xset compton feh man-db man-pages
 
-systemctl enable ligthdm.service
+systemctl enable lightdm.service
 
-man-db
+mandb
 
 su "$username"
-cd
-git clone https://aur.archlinux.org/yay.git
+git clone https://aur.archlinux.org/yay.git /home/$username/yay
 cd yay
 makepkg -si
 cd ..
