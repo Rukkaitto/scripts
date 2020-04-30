@@ -1,4 +1,0 @@
-#!/bin/bash
-
-lsblk -l -n | grep part | awk '{print $1}' | grep -v sda | dmenu -p 'Device to mount: ' | sed 's/\n/ /g' | xargs -d '\n' -I {} sudo mount /dev/{} /mnt
-
